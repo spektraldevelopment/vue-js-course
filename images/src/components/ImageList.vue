@@ -1,12 +1,20 @@
 <template>
     <div>
-        Image List
+        <img v-for="image in allImages" :src="image.link" />
     </div>
 </template>
 
 <script>
-export default {
-    name: 'ImageList'
-}
+
+    import { mapActions, mapGetters } from 'vuex';
+
+    export default {
+        name: 'ImageList',
+        computed: mapGetters(['allImages']),
+        methods: mapActions(['fetchImages']),
+        created() {
+            this.fetchImages();
+        }
+    }
 </script>
 
